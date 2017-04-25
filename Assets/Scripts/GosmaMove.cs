@@ -12,6 +12,13 @@ public class GosmaMove : MonoBehaviour {
     private GameObject player;
     private bool pontuou = false;
 
+    private GameObject player;
+    private bool pontuou = false;
+
+    private void Awake() {
+        player = GameObject.Find("Player");
+    }
+
     void Start () {
         StartCoroutine(Move(min));
 	}
@@ -29,8 +36,12 @@ public class GosmaMove : MonoBehaviour {
                 pontuou = true;
             }
         }
+<<<<<<< HEAD
 
     }
+=======
+	}
+>>>>>>> 6abb0c7cc58a58c27e5568d5e7d0c98c3e3f936a
 
     IEnumerator Move(float destino) {
         while (Mathf.Abs(destino - transform.position.y) > 0.2f) {
