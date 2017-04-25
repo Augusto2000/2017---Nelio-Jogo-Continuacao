@@ -1,18 +1,35 @@
 ﻿using System.Collections;
 using UnityEngine;
+using UnityEngine.UI;
 
 public class GameController : MonoBehaviour {
 
     public GameObject menuCamera;
     public GameObject menuPanel;
+    
 
     public Estado estado { get; private set; }
 
     public GameObject obstaculo;
     public float espera;
     public float tempoDestruicao;
+    private int pontos;
+    public Text txtPontos;
 
     public static GameController instancia = null;
+
+   
+
+    private void atualizarPontos(int x) {
+        pontos = x;
+        txtPontos.text = "" + x;
+    }
+
+    public void incrementarPontos(int x) {
+        atualizarPontos(pontos + x);
+    }
+
+
 
     void Awake() {
         if (instancia == null) {
@@ -41,6 +58,7 @@ public class GameController : MonoBehaviour {
         estado = Estado.Jogando;
         menuCamera.SetActive(false);
         menuPanel.SetActive(false);
+        atualizarPontos(0);
         StartCoroutine(GerarObstaculos());
     }
 
